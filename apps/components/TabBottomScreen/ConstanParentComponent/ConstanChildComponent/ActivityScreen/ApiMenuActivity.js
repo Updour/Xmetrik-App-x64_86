@@ -7,7 +7,7 @@ export const ApiMenuActivity = {
       nav: 'setting',
       img: require('../../../../../assets/images/activity/setting.png')
     },
-    
+
     {
       name: 'Registrasi Downline',
       text: 'Untuk Tambah Downline',
@@ -51,7 +51,7 @@ export const ApiMenuActivity = {
       nav: 'topUp',
       img: require('../../../../../assets/images/activity/ticket.png')
     },
-    
+
 
     {
       name: 'Data Downline',
@@ -99,7 +99,7 @@ export const ApiMenuActivity = {
     },
     {
       name: 'Produk',
-      text: 'Daftar Produk',
+      text: 'Daftar Produk Payment',
       code: 'xm',
       nav: 'product',
       img: require('../../../../../assets/images/activity/product.png')

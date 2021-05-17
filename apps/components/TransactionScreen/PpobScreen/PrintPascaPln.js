@@ -6,11 +6,11 @@ import { TouchableOpacity, NativeModules } from 'react-native';
 import axios from 'axios'
 import moment from 'moment'
 import { Col, Grid } from "react-native-easy-grid";
-import { 
+import {
 	Container, Header, Title, Content, Icon, Text, Item, Input, Label,
 	Footer, FooterTab, Button, Card, ListItem, Body,  Right, Form
 } from 'native-base';
-import { 
+import {
 	formatPrice, formatDate, SelectDate, formatDatePrint, pNetPrintPasca,
 	PrintStyles, ModalPopUp, styles, Empty, setNotifNot, ReloadScreen
 } from '../../CollectionScreen'
@@ -94,8 +94,8 @@ export default class PrintPascaPln extends Component {
 
 	/*print out*/
 	_onRetrieveValueDataPrintOut = () => {
-		let { 
-			id, name, payDate, product, sn, status, admin, payAmount, 
+		let {
+			id, name, payDate, product, sn, status, admin, payAmount,
 			checkAmount, total, isNtPln
 		} = this.state;
 
@@ -116,11 +116,11 @@ Total Bayar   : ${formatPrice(total)}
 -------------------------------
 ${sn}
 -------------------------------
-Terima Kasih Dan Selamat 
+Terima Kasih Dan Selamat
   Bertransaksi Kembali
 		`;
 		console.log('q', text)
-		PrinterManager.printText(text) 
+		PrinterManager.printText(text)
 		}
 
 		if (isNtPln === true) {
@@ -140,13 +140,13 @@ Total Bayar   : ${formatPrice(total)}
 -------------------------------
 ${sn}
 -------------------------------
-Terima Kasih Dan Selamat 
+Terima Kasih Dan Selamat
   Bertransaksi Kembali
 		`;
 		console.log('q', word)
-		PrinterManager.printText(word) 
+		PrinterManager.printText(word)
 		}
-		
+
 }
 	_onRemovePreventState = () => {
 		this.setState({
@@ -166,21 +166,21 @@ Terima Kasih Dan Selamat
 		})
 	}
 	_onReloadScreenAndData = () => {
-    this.setState({ 
+    this.setState({
       refreshing: true
     }, ()=>	this._onRemovePreventState())
   }
 	render() {
-		let { 
-			id, name, payDate, product, sn, status, admin, payAmount, 
+		let {
+			id, name, payDate, product, sn, status, admin, payAmount,
 			checkAmount, total, isOpen, isDate, isNtPln
 		} = this.state;
-		let { 
-			textPay, textStyled, textRigthStyle, contentStyle, iconStyle, footerStyle, 
-			buttonStyle 
+		let {
+			textPay, textStyled, textRigthStyle, contentStyle, iconStyle, footerStyle,
+			buttonStyle
 		} = PrintStyles
-		let { 
-			cardStyles, itemDateStart, aLabelAStyle, aLabelInStyle, formStyles, 
+		let {
+			cardStyles, itemDateStart, aLabelAStyle, aLabelInStyle, formStyles,
 			footerStyles, textStyle, SubmitStyle
 		} = styles
 		return (
@@ -195,7 +195,7 @@ Terima Kasih Dan Selamat
 			<Form style={formStyles}>
 			<Item stackedLabel>
 			<Label>ID Pelangan</Label>
-			<Input 
+			<Input
 			onChangeText={isIdCust => this.setState({isIdCust})}
 			value={this.state.isIdCust}
 			keyboardType='phone-pad'
@@ -203,7 +203,7 @@ Terima Kasih Dan Selamat
 			</Item>
 			<Item stackedLabel style={itemDateStart}>
 			<Label>Pilih Tanggal</Label>
-			<SelectDate 
+			<SelectDate
 			onDateChange={val => this.setState({isDate: val})}
 			/>
 			</Item>
@@ -214,12 +214,12 @@ Terima Kasih Dan Selamat
 
 
 		{/*zona modal*/}
-		<ModalPopUp 
+		<ModalPopUp
 		visible={isOpen}
 		onPress={this._onRemovePreventState}
 		onRequestClose={this._onRemovePreventState}
 		>
-		{isNtPln ? 
+		{isNtPln ?
 			<Content style={contentStyle}>
 		<Text style={textStyled}>===============================</Text>
 		<Text style={textStyled}>CETAK STRUK PASCABAYAR</Text>
@@ -287,7 +287,7 @@ Terima Kasih Dan Selamat
 		<Text style={textStyled}>===============================</Text>
 		<Text style={textStyled}>Terima Kasih Dan Selamat </Text>
 		<Text style={textStyled}>Bertransaksi Kembali</Text>
-		</Content> : 
+		</Content> :
 
 		<Content style={contentStyle}>
 		<Text style={textStyled}>===============================</Text>
@@ -358,7 +358,7 @@ Terima Kasih Dan Selamat
 		<Text style={textStyled}>Bertransaksi Kembali</Text>
 		</Content>
 		}
-		
+
 		<Footer style={footerStyle}>
 		<Button vertical style={buttonStyle}
 		onPress={() => PrinterManager.connect()}
@@ -388,7 +388,7 @@ Terima Kasih Dan Selamat
 		<Text style={textStyle}>Cari Data</Text>
 		</TouchableOpacity>
 		</Footer>
-		</Container> 
+		</Container>
 		);
 	}
 }

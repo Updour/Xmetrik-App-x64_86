@@ -6,10 +6,10 @@ import axios from 'axios'
 
 import { StackActions, NavigationActions } from 'react-navigation';
 import { ScrollView, TouchableOpacity } from 'react-native'
-import { 
+import {
   Container, Content, Form, Item, Input, Label, Icon, Text, Switch, Card,
 } from 'native-base';
-import { 
+import {
   netAuth, AuthStyles, styles, Submit, CantStorage, SaveLocal, SaveStorage, LogFailed, LogSuccess, Empty, SkypeIndicator
 } from '../CollectionScreen'
 
@@ -26,7 +26,7 @@ export default class AuthenticationScreen extends Component {
     pin: '',
     password: ''
   }
-  // 
+  //
   componentDidMount() {
     this._onGetValueStorageLocally()
   }
@@ -35,7 +35,7 @@ export default class AuthenticationScreen extends Component {
     this.setState({ isPinSwitches: !this.state.isPinSwitches})
   }
 
-  // chnage icon password 
+  // chnage icon password
   _onVisibleIconPasswordSwicthes = () => {
     this.setState({ isPasswordSwitches: !this.state.isPasswordSwitches })
   }
@@ -79,7 +79,7 @@ export default class AuthenticationScreen extends Component {
     if(value == true) {
       const { hp, pin, password } = this.state;
       if (hp === '' || pin === '' || password === '') {
-        Empty()  
+        Empty()
         this.setState({ isSwitchValue: false })
       } else {
         this._onSetValueStorageLocally()
@@ -93,19 +93,21 @@ export default class AuthenticationScreen extends Component {
 
   // login submit
   _onCheckedDataWhenMakeLogin = async () => {
+                this.props.navigation.dispatch(resetAction);
+
     try {
       let { hp, pin, password } = this.state;
       let hd = hp.replace('+62', '0').replace('0', '+62')//.replace('62', '0')
       let uri = netAuth() +  hd +'/'+ pin + '/' + password
-      if (pin === '' || password === '' || hd === '') { return Empty() } 
+      if (pin === '' || password === '' || hd === '') { return Empty() }
 
         this._onSetValueStorageLocally()
         this.setState({ isSwitchValue: true })
-      
+
       let results = await axios.get(uri)
       let data = results.data.data
       AsyncStorage.setItem('@keyData', JSON.stringify(data))
-      
+
       if (data.upline && data.dealer === '1') {
         AsyncStorage.setItem('@keyDataMD', JSON.stringify(data))
           this.setState({ isSuccess: true })
@@ -134,21 +136,21 @@ export default class AuthenticationScreen extends Component {
               this.setState({ isSuccess: false })
               LogFailed()
             }
-          } 
+          }
       } catch(err) {
         console.log(err)
       }
     }
 
   render() {
-    let { 
-      isSwitchValue, isSuccess, hp, password, pin, 
+    let {
+      isSwitchValue, isSuccess, hp, password, pin,
       isPinSwitches, isPasswordSwitches
     } = this.state;
-    let { 
-      formStyles, itemStyles, iconInaFocus, iconFocus, 
-      cardStyles, footerStyles, labelFocus, labelInaFocus, 
-      conInaLabel, iconLabel, inputStyles, textStyles, 
+    let {
+      formStyles, itemStyles, iconInaFocus, iconFocus,
+      cardStyles, footerStyles, labelFocus, labelInaFocus,
+      conInaLabel, iconLabel, inputStyles, textStyles,
       switchStyles, textSwitchStyles
     } = AuthStyles;
 
@@ -162,7 +164,7 @@ export default class AuthenticationScreen extends Component {
             <Item stackedLabel style={itemStyles}>
              <Icon active name='ios-person' style={hp ? iconInaFocus : iconFocus }/>
               <Label style={hp ? labelInaFocus : labelFocus }>Nomor Handphone</Label>
-              <Input 
+              <Input
                 keyboardType='phone-pad'
                 onChangeText={hp => this.setState({hp})}
                 value={hp}
@@ -170,12 +172,12 @@ export default class AuthenticationScreen extends Component {
               />
             </Item>
             <Item stackedLabel last style={itemStyles}>
-            <Icon name={isPinSwitches ? 'ios-lock' : 'ios-unlock'} 
-                style={pin ? iconInaFocus : iconFocus} 
+            <Icon name={isPinSwitches ? 'ios-lock' : 'ios-unlock'}
+                style={pin ? iconInaFocus : iconFocus}
                 onPress={this._onVisibleIconPinSwicthes}
                 />
               <Label style={pin ? labelInaFocus : labelFocus }>Pin Transaksi</Label>
-              <Input 
+              <Input
                 secureTextEntry= {isPinSwitches}
                 onChangeText={pin => this.setState({pin})}
                 value={pin}
@@ -183,10 +185,10 @@ export default class AuthenticationScreen extends Component {
             </Item>
             <Item stackedLabel last style={itemStyles}>
             <Icon name={isPasswordSwitches ? 'ios-eye-off' : 'ios-eye'}
-                style={password ? iconInaFocus : iconFocus} 
+                style={password ? iconInaFocus : iconFocus}
                 onPress={this._onVisibleIconPasswordSwicthes}/>
               <Label style={password ? labelInaFocus : labelFocus }>Password Transaksi</Label>
-              <Input 
+              <Input
                 style={inputStyles}
                 secureTextEntry= {isPasswordSwitches}
                 onChangeText={password => this.setState({password})}
@@ -197,13 +199,13 @@ export default class AuthenticationScreen extends Component {
         <Switch
           onValueChange={(value) => this._onShowWhenSelectSwitches(value)}
           style={switchStyles}
-          value={isSwitchValue} 
+          value={isSwitchValue}
         />
           <Text style={textSwitchStyles}>Switch Untuk Simpan Data</Text>
-          
+
        <Content >
-            {isSuccess ? 
-              <SkypeIndicator color='red' style={{marginBottom: 10}}/> : 
+            {isSuccess ?
+              <SkypeIndicator color='red' style={{marginBottom: 10}}/> :
             <Submit onPress={this._onCheckedDataWhenMakeLogin}>
               <Text style={styles.textSubmit}>
                 Login

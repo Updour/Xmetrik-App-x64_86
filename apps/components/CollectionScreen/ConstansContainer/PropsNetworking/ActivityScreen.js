@@ -17,19 +17,19 @@ export const netDeposit = () => (
 export const netDownline = () => (
   uri = urlXmetrik() + 'downline/'
 )
-// 
+//
 export const netSetBonus = () => (
   uri = urlXmetrik() + 'setbonus/'
 )
 
-// for payment 
+// for payment
 export const netPayment = () => (
   uri = urlXmetrik() + 'payment/'
 )
 // for transaction
 export const netTransaction = () => (
   uri = urlXmetrik() + 'dpurchase/'
-) 
+)
 // for mutations
 export const netMutation = () => (
   uri= urlXmetrik() + 'mutasi/'

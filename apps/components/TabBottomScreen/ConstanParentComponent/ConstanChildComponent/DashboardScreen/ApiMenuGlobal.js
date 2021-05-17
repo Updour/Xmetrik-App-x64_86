@@ -2,7 +2,7 @@ export const ApiMenuGlobal = [
 
   {
     name: 'Cetak Struk',
-    text: 'Untuk Cetak Struk PPOB',
+    text: 'Untuk Cetak Struk Transaksi',
     nav: 'print',
     img: require('../../../../../assets/images/dashboard/print.png'),
   },
@@ -50,14 +50,14 @@ export const ApiMenuGlobal = [
   //   img: require('../../../../../assets/images/voucher/bolt.png'),
   // },
 // ppob
-  
+
   {
     name: 'PLN Pasca',
     text: 'Untuk Cek / Pembayaran PLN Pasca',
     nav: 'pln',
     img: require('../../../../../assets/images/ppob/pln_pasca.png'),
   },
-  
+
   // {
   //   name: 'Pdam', //in ppob menu === bolt wayae
   //   nav: 'pdam',
@@ -99,7 +99,20 @@ export const ApiMenuGlobal = [
     nav: 'pgn',
     img: require('../../../../../assets/images/ppob/pgn.png'),
   },
+
   // Virtual Account
+  {
+    name: 'Kaspro',
+    text: 'Untuk Pembelian Voucher Kaspro',
+    nav: 'kaspro',
+    img: require('../../../../../assets/images/vAccount/kaspro.jpg'),
+  },
+  {
+    name: 'Visaku',
+    text: 'Untuk Pembelian Voucher Visaku',
+    nav: 'visa',
+    img: require('../../../../../assets/images/vAccount/visa.png'),
+  },
   {
     name: 'OVO',
     text: 'Untuk Pembelian Voucher OVO',

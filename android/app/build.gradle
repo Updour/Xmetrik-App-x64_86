@@ -117,8 +117,8 @@ import com.android.build.OutputFile
         applicationId "com.Xmetrik"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 24
-        versionName "10.5.24"
+        versionCode 28
+        versionName "10.5.28"
     }
     // signingConfigs {
     //     release {

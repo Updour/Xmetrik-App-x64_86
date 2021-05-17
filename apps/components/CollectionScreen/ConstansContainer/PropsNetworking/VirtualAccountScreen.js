@@ -1,4 +1,4 @@
-// v == virtual 
+// v == virtual
 import { urlXmetrik, urlMetrikPulsa } from './index'
 
 
@@ -26,4 +26,10 @@ export const vNetShopee = () => (
 
 export const vNetLinkAja = () => (
   uri = urlXmetrik() + 'vlinkaja'
+)
+export const vNetKaspro = () => (
+  uri = urlXmetrik() + 'vkaspro'
+)
+export const vNetVisaku = () => (
+  uri = urlXmetrik() + 'visaku'
 )

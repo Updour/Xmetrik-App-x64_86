@@ -1,13 +1,13 @@
-import { urlXmetrik, urlMetrikPulsa } from './index'
+import { urlXmetrik, urlMetrikPulsa, urlStruk } from './index'
 
 
-// *** for all users *** \\ 
+// *** for all users *** \\
 // **** Transaction screen All in One in Here ****** \\\
 
 // for user || stockiess
 export const netUsers = () => (
   net = urlXmetrik() + 'stockiess/'
-) 
+)
 // for eletric n global
 
 // for inbox
@@ -40,7 +40,13 @@ export const netCheking = () => (
 export const netDataTrx  = () => (
   uri = urlXmetrik() + 'dpurchase/'
 )
+
 // PRINT STRUCK pln prepadi
 export const netStruck  = () => (
   uri = urlXmetrik() + 'strukpln/'
 )
+// struck voucher
+export const netPrepaid  = () => (
+  uri = urlStruk() + 'prepaid'
+)
+

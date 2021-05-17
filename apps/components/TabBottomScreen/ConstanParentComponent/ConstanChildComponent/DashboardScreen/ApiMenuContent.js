@@ -46,14 +46,14 @@ export const ApiMenuVoucher = [
 
 export const ApiMenuVirtualAccount = [
   {
-    name: 'Ovo',
-    nav: 'ovo',
-    img: require('../../../../../assets/images/vAccount/ovo.png'),
+    name: 'Kaspro',
+    nav: 'kaspro',
+    img: require('../../../../../assets/images/vAccount/kaspro.jpg'),
   },
   {
-    name: 'Go-pay ',
-    nav: 'gopay',
-    img: require('../../../../../assets/images/vAccount/gopay.png'),
+    name: 'Visaku',
+    nav: 'visa',
+    img: require('../../../../../assets/images/vAccount/visa.png'),
   },
   {
     name: 'Grab',
@@ -66,3 +66,4 @@ export const ApiMenuVirtualAccount = [
     img: require('../../../../../assets/images/vAccount/etol.png'),
   },
 ]
+

@@ -39,35 +39,35 @@ export const Coders = () => {
 }
 // for setting bonus
 export const setSuccess = () => {
-ToastAndroid.show('Setting Bonus Successfully', ToastAndroid.LONG);	
+ToastAndroid.show('Setting Bonus Successfully', ToastAndroid.LONG);
 }
 // for complaint
 export const setSend = () => {
-ToastAndroid.show('Data has been sent', ToastAndroid.LONG);	
+ToastAndroid.show('Data has been sent', ToastAndroid.LONG);
 }
 export const setView = () => {
-ToastAndroid.show('Please, Refresh in inbox screen to view data', ToastAndroid.LONG);	
+ToastAndroid.show('Please, Refresh in inbox screen to view data', ToastAndroid.LONG);
 }
 // for token pln num hp
 export const setHp = () => {
-ToastAndroid.show('Gunakan code bintang di awal nomor handphone', ToastAndroid.SHORT);	
+ToastAndroid.show('Gunakan code bintang di awal nomor handphone', ToastAndroid.SHORT);
 }
 export const setNotifHp= () => {
-ToastAndroid.show(' contoh: * 08234567890', ToastAndroid.LONG);	
+ToastAndroid.show(' contoh: * 08234567890', ToastAndroid.LONG);
 }
 
 export const setNotifSet= () => {
-ToastAndroid.show(' Minimal Setting Bonus Rp. 50 Dan Maximal Rp. 500', ToastAndroid.SHORT);	
+ToastAndroid.show(' Minimal Setting Bonus Rp. 50 Dan Maximal Rp. 500', ToastAndroid.SHORT);
 }
 // data not found
 
 export const setNotifNot= () => {
-ToastAndroid.show('Data not found', ToastAndroid.SHORT);	
+ToastAndroid.show('Data not found', ToastAndroid.SHORT);
 }
 
 export const setNotifRemove= () => {
-ToastAndroid.show('Data remove Successfully', ToastAndroid.SHORT);	
+ToastAndroid.show('Data remove Successfully', ToastAndroid.SHORT);
 }
 export const NotifyResponse= (val) => {
-ToastAndroid.show(val, ToastAndroid.SHORT);	
+ToastAndroid.show(val, ToastAndroid.SHORT);
 }

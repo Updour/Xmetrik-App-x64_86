@@ -34,6 +34,8 @@ import GameVoucherScreen from '../TransactionScreen/VoucherScreen/GameVoucherScr
 import BoltVoucherScreen from '../TransactionScreen/VoucherScreen/BoltVoucherScreen'
 
 // virtual screen
+import KasproVirtualScreen from '../TransactionScreen/VirtualAccountScreen/KasproVirtualScreen'
+import VisakuVirtualScreen from '../TransactionScreen/VirtualAccountScreen/VisakuVirtualScreen'
 import OvoVirtualScreen from '../TransactionScreen/VirtualAccountScreen/OvoVirtualScreen'
 import GopayVirtualScreen from '../TransactionScreen/VirtualAccountScreen/GopayVirtualScreen'
 import GrabVirtualScreen from '../TransactionScreen/VirtualAccountScreen/GrabVirtualScreen'
@@ -85,18 +87,19 @@ import PrintPascaPln from '../TransactionScreen/PpobScreen/PrintPascaPln'
 import TabPrintStruckScreen from '../TransactionScreen/PpobScreen/TabPrintStruckScreen'
 
 const StackRouterScreen = createStackNavigator({
+    // print: { screen: TabPrintStruckScreen },
+
     // cheked: { screen: StartUpScreeen },
     // forgot: { screen: ForgotPinScreen },
     // auth: { screen: AuthenticationScreen },
-    print: { screen: TabPrintStruckScreen },
-   
-    // // tab screen
+
+    // tab screen
     MainMenuBottomScreen: { screen: MainMenuBottomScreen },
-    
+
     // // // // // eletric screnn
     regular: { screen: EletricRegularScreen },
     packet: { screen: EletricPacketScreen },
-    
+
     // // // // // // // ppob screen
     pln: { screen: PlnPpobScreen },
     printPasca: { screen: TabPlnScreen },
@@ -116,6 +119,8 @@ const StackRouterScreen = createStackNavigator({
     vBolt: { screen: BoltVoucherScreen },
 
     // // // // virtual account screen
+    kaspro: { screen: KasproVirtualScreen },
+    visa: { screen: VisakuVirtualScreen },
     ovo : { screen: OvoVirtualScreen },
     gopay: { screen: GopayVirtualScreen },
     grab: { screen: GrabVirtualScreen },
@@ -124,6 +129,7 @@ const StackRouterScreen = createStackNavigator({
     cinema: { screen: CinemaVirtualScreen },
     shopee: { screen:ShopeeVirtualScreen },
     linkAja: { screen: LinkAjaVirtualScreen },
+
     // // // activity screen
     paymentData: { screen: DataPaymentScreen },
     mutationData: { screen: DataMutationScreen },
@@ -135,7 +141,8 @@ const StackRouterScreen = createStackNavigator({
     packetPrice: { screen: PricePacketScreen },
     virtualPrice: { screen: PriceVirtualAccountScreen },
     voucherPrice: { screen: PriceVoucherScreen },
-    
+    print: { screen: TabPrintStruckScreen },
+
     // // sd only
     manualTrx: { screen: ManualTransactionScreen },
     transfer: { screen: TransferSaldoScreen },
@@ -148,7 +155,7 @@ const StackRouterScreen = createStackNavigator({
     process: { screen: ProcessingData },
     purchase: { screen: DataTransaction },
     history: { screen: HistoryTransaction },
-    
+
     // account screeen
     help: { screen: HelpScreen },
     about: { screen: AboutScreen },
@@ -159,7 +166,7 @@ const StackRouterScreen = createStackNavigator({
     security: { screen: SecurityScreen },
 
     allMenu: { screen: ListMenuGlobal }
-  }, 
+  },
   {
     headerMode: 'none',
     transitionConfig
