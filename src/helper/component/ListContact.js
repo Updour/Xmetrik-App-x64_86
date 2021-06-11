@@ -8,7 +8,7 @@ List, ListItem, Left, Body, Right, Text, Icon, Card
 } from 'native-base'
 
 
-const ContactItem = ({ onPress, item }) => {
+const ListContact = ({ onPress, item }) => {
   let { label, name, number } = item;
   let { textName } = styles
   return (
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
 });
 
 
-export {ContactItem};
+export {ListContact};

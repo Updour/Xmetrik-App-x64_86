@@ -13,8 +13,8 @@ const RecentInbox = ({item, onPress}) => {
   let { txtBold, txtNote, btnBuy, btnTxt } = styles;
   let { in_starttime, in_message } = item;
   let splMessage = _.split(in_message, '.', 3)////
-  let rplMessage = _.replace(splMessage, splMessage.slice(2), 'xxxx')
-  let isMessage = _.split(rplMessage, ',', 5).join('.')
+  let rplMessage = _.replace(splMessage, splMessage.slice(-1)[0], 'xxxx')
+  let isMessage = _.split(rplMessage, ',', 3).join('.')
   return (
     <View style={shome.crdStyle}>
       <ListItem icon>

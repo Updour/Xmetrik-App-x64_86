@@ -21,7 +21,7 @@ const BottomMenuScreen = createBottomTabNavigator({
   Activity: {
     screen: ActivityScreen,
     navigationOptions: ({ navigation }) => ({
-      tabBarLabel: 'Activity'
+      tabBarLabel: 'Activities'
     })
   },
   Inbox: {

@@ -15,6 +15,7 @@ import {
 import Header from './SignSigupHeader'
 
 export default class SignScreen extends Component {
+  _isMounted = false;
     state = {
         isTxtPin: true,
         isTxtPassword: true,
@@ -25,15 +26,29 @@ export default class SignScreen extends Component {
     }
 
     componentDidMount() {
-        this._onMakeValStorageLocally()
+        this._isMounted = true;
         this._onRetrieveValStorage()
+        this._onMakeValStorageLocally()
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     _onRetrieveValStorage = async () => {
         try {
             let val = await AsyncStorage.getItem('@keySign')
+            let vals = await AsyncStorage.getItem('#keyLock')
             let parse = JSON.parse(val)
-            return _.isNull(parse) ? setNotfound(parse) : this.props.navigation.dispatch(resetAction)
+            if (_.isNull(parse)) return
+              this.props.navigation.dispatch(resetAction)
+            if (_.isNull(vals)) {
+              this.props.navigation.dispatch(resetAction)
+            }else {
+              this.props.navigation.navigate('check')
+            }
+            // console.log(vals)
+            // return _.isNull(vals) ? this.props.navigation.dispatch(resetAction) : this.props.navigation.navigate('check')
         } catch(e) {
             console.log(e);
         }
@@ -49,20 +64,20 @@ export default class SignScreen extends Component {
 
     // get value when sav to asycstorage
       _onMakeValStorageLocally = async () => {
+
         let onNumb = await AsyncStorage.getItem('@keyHp')
         let chp = _.isEmpty(onNumb) ? this.setState({ isSwitchValue: false }) :
-        this.setState({ hp: onNumb, isSwitchValue: true })
+        this._isMounted && this.setState({ hp: onNumb, isSwitchValue: true })
 
             // pin
         let onPin = await AsyncStorage.getItem('@keyPin')
         let cpin =  _.isEmpty(onPin) ? this.setState({ isSwitchValue: false }) :
-        this.setState({ pin: onPin, isSwitchValue: true })
+        this._isMounted && this.setState({ pin: onPin, isSwitchValue: true })
 
             // show password
         let onPass = await AsyncStorage.getItem('@keyPassword')
         let cpassword =  _.isEmpty(onPass) ? this.setState({ isSwitchValue: false }) :
-        this.setState({ password: onPass, isSwitchValue: true })
-
+        this._isMounted && this.setState({ password: onPass, isSwitchValue: true })
       }
 
     // switch save locally data
@@ -103,18 +118,18 @@ export default class SignScreen extends Component {
                     () => setTimeout(() => this.props.navigation.dispatch(resetAction)
                         , 3000))
                 // AsyncStorage.setItem('@keyAD', JSON.stringify(results.data.data))
-                AsyncStorage.setItem('@keyAD', JSON.stringify('dist'))
+                AsyncStorage.setItem('@keyLog', JSON.stringify('dist'))
             }
                 if (_.isEqual(sub_distributor, '0')) {
                    this.setState({ isSign: true },
                     () => setTimeout(() => this.props.navigation.dispatch(resetAction)
                         , 3000))
-                   AsyncStorage.setItem('@keySD', JSON.stringify('subdist'))
+                   AsyncStorage.setItem('@keyLog', JSON.stringify('subdist'))
                }else {
                    this.setState({ isSign: true },
                     () => setTimeout(() => this.props.navigation.dispatch(resetAction)
                         , 3000))
-                   AsyncStorage.setItem('@keyXM', JSON.stringify('reseller'))
+                   AsyncStorage.setItem('@keyLog', JSON.stringify('reseller'))
                }
         } catch(e) {
              setNotify(e)

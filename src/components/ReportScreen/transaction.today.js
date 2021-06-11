@@ -9,9 +9,9 @@ import { Container, Content } from 'native-base'
 import {
   styles, setNotify, RefreshScreen, EmptyData, dev_net, DotIndicator
 } from '../../helper'
+import { PropsToday } from './response'
 
-import {PropsToday} from './response'
-export default class TodayReports extends Component {
+export default class TransactionToday extends Component {
     state = {
         reports: [],
         isRefresh: false,

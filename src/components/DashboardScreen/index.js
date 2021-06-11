@@ -58,7 +58,7 @@ export default class DashboardScreen extends Component {
                     bonus: _.get(results.data.data[0], 'bonus'),
                     lasBal: _.get(results.data.data[0], 'last_balance'),
                     uname: _.get(results.data.data[0], 'nama'),
-                })
+                }, () => setNotify(`preparing data ..`))
             }
         } catch(e) {
             setNotify(e)
@@ -71,7 +71,8 @@ export default class DashboardScreen extends Component {
        await AsyncStorage.removeItem('@keyHp')
        await AsyncStorage.removeItem('@keyPin')
        await AsyncStorage.removeItem('@keyPassword')
-       this.props.navigation.navigate("sign")
+       await AsyncStorage.removeItem('@keyLog')
+       setTimeout(() => this.props.navigation.navigate("sign"), 3000);
     }
     _onNotifyLogOutScreen = () =>
     Alert.alert(
@@ -114,8 +115,7 @@ export default class DashboardScreen extends Component {
         <Content style={styles.contentStyle}>
         <ScrollView
           showsHorizontalScrollIndicator={false}>
-            <View>
-                <Content style={shome.contentTop} />
+                <Content style={shome.contentTop}></Content>
                     <Content style={shome.contentRender}>
                         <View style={shome.cardStyl}>
                             <View style={shome.viewRow}>
@@ -127,7 +127,7 @@ export default class DashboardScreen extends Component {
                                     }
                                 </View>
                                 <TouchableOpacity style={shome.btnDeposits}
-                                onPress={() => setNotify('menu unaviable')}>
+                                onPress={() => this.props.navigation.navigate('topup')}>
                                     <Text style={shome.textDeposits}>Top Up</Text>
                                 </TouchableOpacity>
                                  <TouchableOpacity style={shome.btnRefresh}
@@ -165,17 +165,13 @@ export default class DashboardScreen extends Component {
                             </ScrollView>
                             </View>
                         </View>
-                    <Content style={shome.contentStyl}>
-                        <MenuDashboard {...this.props} />
-                    </Content>
-                    <Content style={shome.contentStyl}>
-                        <RecentDashboard {...this.props} />
-                    </Content>
-                    {/*<Content style={shome.contentStyl}>
-                        <StatusDashboard {...this.props} />
-                    </Content>*/}
                 </Content>
-            </View>
+                    <View style={[shome.contentStyl, {marginTop: -57}]}>
+                        <MenuDashboard {...this.props} />
+                    </View>
+                    <View style={[shome.contentStyl, {height: 200}]}>
+                        <RecentDashboard {...this.props} />
+                    </View>
             </ScrollView>
         </Content>
         </Container>

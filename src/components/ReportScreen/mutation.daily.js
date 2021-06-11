@@ -11,11 +11,11 @@ import {
 import {
     styles, setNotify, RefreshScreen, setFormDate, EmptyData, dev_net, DotIndicator
 } from '../../helper'
-import { PropsToday } from './response'
+import { PropsMutation } from './response'
 
-export default class YesterdayReports extends Component {
+export default class MutationDaily extends Component {
     state = {
-        reports: [],
+        mutations: [],
         isSetDate: '',
         isRefresh: false,
         isSetElm: false,
@@ -41,19 +41,19 @@ export default class YesterdayReports extends Component {
       }
     }
 
-    _onSelectByDateReports = async () => {
+    _onSelectByDatemutations = async () => {
         try {
-            let { id, isSetDate } = this.state;
-          let results = await axios.get(dev_net()+`trx-data-all/${id}/${setFormDate(new Date(isSetDate))}`)
+          let { id, isSetDate } = this.state;
+          let results = await axios.get(dev_net()+`mutation-data/daily/${id}/${setFormDate(new Date(isSetDate))}`)
             if (_.isEqual(results.data.status, 404)) {
                 this.setState({
                     isValSet: false,
                     isSetElm: false
                 }, () => setNotify(results.data.msg))
             }else {
-                // console.log('a', isSetDate, results.data.data)
+                console.log('a', isSetDate, results.data.data)
                 this.setState({
-                    reports: results.data.data,
+                    mutations: results.data.data,
                     isRefresh: false,
                     isValSet: true,
                     isSetElm: true
@@ -67,13 +67,13 @@ export default class YesterdayReports extends Component {
     _onSelectByDateStruct = async (val) => {
        this.setState({ isSetDate: val },
         () => setTimeout(() => {
-            this._onSelectByDateReports()
+            this._onSelectByDatemutations()
         }, 250))
     }
 
    _onRefreshNewValData = () => {
         this.setState({
-            reports: [],
+            mutations: [],
             isRefresh: true,
             isSetElm: false,
             isValSet: false,
@@ -106,7 +106,7 @@ export default class YesterdayReports extends Component {
                         modalTransparent={false}
                         animationType={"fade"}
                         androidMode={"default"}
-                        placeHolderText="Tanggal transaksi"
+                        placeHolderText="Tanggal Mutasi"
                         textStyle={{ color: "green"}}
                         placeHolderTextStyle={{ color: "#d3d3d3" }}
                         onDateChange={this._onSelectByDateStruct}
@@ -120,16 +120,16 @@ export default class YesterdayReports extends Component {
                     onPress={this._onRefreshNewValData}
                     /> :
                     <Icon name='search' style={{ padding: 7, marginTop: 4, color: '#66a3ff'}}
-                    onPress={this._onSelectByDateReports}
+                    onPress={this._onSelectByDatemutations}
                     />
                 }
             </View>
           </Form>
                 {
                   this.state.isSetElm ? <FlatList
-                       data={this.state.reports}
+                       data={this.state.mutations}
                        keyExtractor={(i, j) => j.toString()}
-                       renderItem={({item}) => <PropsToday item={item} /> }
+                       renderItem={({item}) => <PropsMutation item={item} /> }
                        ListEmptyComponent={() => <DotIndicator color='blue' />}
                    /> : <EmptyData color='blue' />
                 }

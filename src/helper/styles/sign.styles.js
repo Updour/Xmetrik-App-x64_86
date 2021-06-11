@@ -18,7 +18,6 @@ const sign = StyleSheet.create({
   itemStyles:{
     borderColor: 'red',
     marginRight: 12,
-    borderWidth: 1,
     marginLeft: 20,
   },
   inputStyles:{

@@ -68,13 +68,13 @@ const styles = StyleSheet.create({
 
   },
   formView: {
-    marginLeft: 7,
-    marginRight: 7,
-    marginTop: 2,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 3,
     marginBottom: 2,
     borderWidth: 1,
-    borderColor: '#d9d9d9',
     borderRadius: 13,
+    borderColor: '#d9d9d9',
     backgroundColor: '#fff'
   },
   txtNotify: {
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     color: '#808080'
   },
   txtNumb: {
+    fontSize: 14,
     marginLeft: 12,
     padding: 2,
     color: 'green',
@@ -96,6 +97,25 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     fontFamily: 'roboto',
     color: '#8c8c8c'
+  },
+  txtItalix: {
+    flex: 1,
+    fontSize: 13,
+    marginRight: 6,
+    fontStyle: 'italic',
+    textAlign: 'center',
+    fontFamily: 'roboto',
+    color: '#8c8c8c'
+  },
+  txtKnote: {
+    flex: 1,
+    fontSize: 11,
+    padding: 2,
+    // marginRight: 6,
+    fontStyle: 'italic',
+    textAlign: 'center',
+    fontFamily: 'roboto',
+    color: '#808080'
   },
   txtCenter: {
     flex: 1,
@@ -148,6 +168,10 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     backgroundColor: '#00e64d'
   },
+  txtPend: {
+    borderRadius: 13,
+    backgroundColor: '#ffa64d'
+  },
   txtFail: {
     borderRadius: 13,
     backgroundColor: '#ff471a'
@@ -160,7 +184,101 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     backgroundColor: '#e6b800'
   },
-
+  denomStyle: {
+    flex: 1,
+    margin: 9,
+    borderRadius: 13,
+    backgroundColor: '#fff'
+  },
+  txtDenom: {
+    flex: 1,
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'roboto',
+    color: '#595959'
+  },
+  viewCenter: {
+    alignItems: "center",
+    backgroundColor: '#fff'
+  },
+  imgStyle: {
+    alignSelf: 'center',
+    width: 50,
+    height: 50,
+    marginTop: 6,
+    marginBottom: 6
+  },
+  btnSubmit: {
+    height: 45,
+    marginRight: 15,
+    marginLeft: 15,
+    marginBottom: 5,
+    borderRadius: 15,
+    backgroundColor: '#66a3ff',
+  },
+  textSubmit: {
+    fontSize: 16,
+    paddingTop: 10,
+    paddingBottom: 10,
+    alignSelf: 'center',
+    color: '#fff',
+    fontWeight: '500',
+    fontFamily: 'roboto'
+  },
+  txtInfo: {
+   fontSize: 15,
+   paddingTop: 5,
+   marginLeft: 12,
+   marginBottom: -4,
+   textAlign: 'left',
+   color: '#737373',
+   fontWeight: '700',
+   fontFamily: 'roboto'
+  },
+  textLabel: {
+    marginBottom: 20,
+    textAlign: 'center',
+    fontSize: 18,
+    color: '#efefef',
+    fontStyle: 'italic',
+    fontFamily: 'roboto'
+  },
+  textInput: {
+    padding: 5,
+    margin: 3,
+    fontSize: 27,
+    borderRadius: 50,
+    textAlign: 'center',
+    color: '#b0afab',
+    backgroundColor: '#efefef',
+    fontStyle: 'italic',
+    fontFamily: 'roboto'
+  },
+  itemStyle: {
+    marginLeft: 14,
+    marginRight: 14
+  },
+  btnStyle: {
+    backgroundColor: '#ff471a',
+    marginLeft: 14,
+    marginRight: 14
+  },
+  btnStyles: {
+    backgroundColor: '#66a3ff',
+    marginLeft: 14,
+    marginRight: 14
+  },
+  txtForgot: {
+    textAlign: 'left'
+  },
+  cntStyle: {
+     backgroundColor:'#f2f2f2',
+      alignItems:'center',
+      justifyContent:'center',
+      flex:1,
+      margin: 3,
+      paddingTop:20
+  }
 });
 
 

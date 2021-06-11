@@ -22,7 +22,7 @@ export default class MenuDashboard extends Component {
         <View style={shome.itemWrap}>
         <View style={shome.itemFtDetil}>
             <TouchableOpacity transparent
-            onPress={() => setNotify('menu unaviable')}>
+            onPress={() => navigation.navigate('eletric')}>
             <Icons name='ios-phone-portrait'
                 size={35} color='blue'
                 style={shome.iconMenus}
@@ -32,7 +32,7 @@ export default class MenuDashboard extends Component {
         </View>
         <View style={shome.itemFtDetil}>
          <TouchableOpacity transparent
-            onPress={() => setNotify('menu unaviable')}>
+            onPress={() => navigation.navigate('ppob')}>
             <Icond name='flash-off'
                 size={35} color='red'
                 style={shome.iconMenu}
@@ -42,7 +42,7 @@ export default class MenuDashboard extends Component {
         </View>
         <View style={shome.itemFtDetil}>
          <TouchableOpacity transparent
-            onPress={() => setNotify('menu unaviable')}>
+            onPress={() => navigation.navigate('game')}>
             <Icond name='gamepad'
                 size={35} color='green'
                 style={shome.iconMenu}
@@ -52,7 +52,7 @@ export default class MenuDashboard extends Component {
         </View>
         <View style={shome.itemFtDetil}>
          <TouchableOpacity transparent
-            onPress={() => setNotify('menu unaviable')}>
+            onPress={() => navigation.navigate('plnt')}>
             <Icond name='flash-off'
                 size={35} color='#a8b319'
                 style={shome.iconMenu}
@@ -63,7 +63,7 @@ export default class MenuDashboard extends Component {
         </View>
         <View style={shome.itemFtDetil}>
              <TouchableOpacity transparent
-             onPress={() => setNotify('menu unaviable')}>
+             onPress={() => navigation.navigate('ewallet')}>
                 <Icons name='ios-wallet'
                     size={35} color='#00aaff'
                     style={shome.iconMenu}
@@ -106,7 +106,7 @@ export default class MenuDashboard extends Component {
         </View>
         <View style={shome.itemFtDetil}>
         <TouchableOpacity transparent
-            onPress={() => setNotify('menu unaviable')}>
+            onPress={() => navigation.navigate('Activity')}>
             <Icond name='clear-all'
                 size={35} color='#cc0000'
                 style={shome.iconMenu} solid

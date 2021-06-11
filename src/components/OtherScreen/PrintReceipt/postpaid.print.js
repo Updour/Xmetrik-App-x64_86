@@ -23,6 +23,7 @@ export default class PostpaidPrint extends Component {
     state = {
         values: [],
         isValSet: false,
+        isSetElm: false,
         isNumber: '',
         isSetDate: ''
     }
@@ -50,12 +51,14 @@ export default class PostpaidPrint extends Component {
                 let results = await axios.get(url)
                 if (_.isEqual(results.data.status, 404)) {
                     this.setState({
-                        isValSet: false
+                        isValSet: false,
+                        isSetElm: false
                     }, () => setNotify(results.data.msg))
                 }else {
                     this.setState({
                         values: results.data,
-                        isValSet: true
+                        isValSet: true,
+                        isSetElm: true
                     })
                 }
         } catch(e) {
@@ -74,6 +77,7 @@ export default class PostpaidPrint extends Component {
     _onRemoveEveryState = () => {
         this.setState({
             isValSet: false,
+            isSetElm: false,
             values: [],
             isNumber: '',
             isSetDate: ''

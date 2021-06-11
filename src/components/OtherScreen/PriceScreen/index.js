@@ -189,14 +189,14 @@ export default class PriceScreen extends Component {
   render() {
     return (
      <Container>
-      <RefreshScreen
-            refreshing={this.state.isRefresh}
-            onRefresh={this._onRefreshNewValData}
-            style={styles.contentStyle}
-          >
-         <Headerd onPress={() => this.props.navigation.navigate('Dashboard')}>
+     <Headerd onPress={() => this.props.navigation.navigate('Dashboard')}>
             <Text>Cek Harga</Text>
          </Headerd>
+          <RefreshScreen
+                refreshing={this.state.isRefresh}
+                onRefresh={this._onRefreshNewValData}
+                style={styles.contentStyle}
+              >
              <Content>
              <Form style={styles.formView}>
                  <View style={styles.itemWrap}>

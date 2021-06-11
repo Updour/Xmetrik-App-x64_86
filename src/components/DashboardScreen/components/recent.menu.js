@@ -11,7 +11,7 @@ import Iconn from 'react-native-vector-icons/FontAwesome'
 
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { Card, Right, Left, Icon, ListItem, Button, Body, Switch } from 'native-base'
-import { shome, dev_net, setNotify, setPrepare, styles } from '../../../helper'
+import { shome, dev_net, setNotify, setPrepare, styles, EmptyData } from '../../../helper'
 import { RecentInbox } from './elm.response'
 
 export default class RecentDashboard extends Component {
@@ -44,7 +44,7 @@ export default class RecentDashboard extends Component {
         this.setState({
           isSetElemt: false,
           isSetNotify: results.data.msg
-        }, () => setNotify(results.data.msg))
+        })
       }else {
         this.setState({
           inbox: _.slice(results.data.data, 0, 3),
@@ -87,7 +87,7 @@ export default class RecentDashboard extends Component {
               keyExtractor={(i, j) => j.toString()}
               renderItem={({item}) => <RecentInbox item={item}
               onPress={() => setNotify('menu unaviable')}/>}
-          /> : <Text style={styles.txtNotify}>{this.state.isSetNotify}</Text>
+          /> : <EmptyData />
         }
 
       </View>

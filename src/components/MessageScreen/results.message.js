@@ -10,7 +10,7 @@ import { styles } from '../../helper'
 const ResultsInbox = ({item, onPress}) => {
     let { sender, in_starttime, in_message, tipe } = item
     let { txtMesage, txtNote } = styles
-        let splMessage = _.split(in_message, '.', 3)////
+        let splMessage = _.split(in_message, '.', 5)////
         let rplMessage = _.replace(splMessage, splMessage.slice(-1)[0], 'xxxx')
         let isMessage = _.split(rplMessage, ',', 5).join('.')
     return (
@@ -18,7 +18,7 @@ const ResultsInbox = ({item, onPress}) => {
             <View style={styles.listStyles} pointerEvents="none">
                 <ListItem>
                     <Body>
-                        <Text style={txtMesage}>{_.replace(sender, '@c.us', '')}</Text>
+                        <Text style={txtMesage}>{_.replace(sender, '@c.us', '').substr(0, 25)}</Text>
                         <Text style={txtNote}>{isMessage}</Text>
                     </Body>
                     <Right>
@@ -39,7 +39,7 @@ const ResultsOutbox = ({item, onPress, status}) => {
             <View style={styles.listStyles} pointerEvents="none">
                 <ListItem>
                     <Body>
-                        <Text style={txtMesage}>{_.replace(sender, '@c.us', '')}</Text>
+                        <Text style={txtMesage}>{_.replace(sender, '@c.us', '').substr(0, 25)}</Text>
                         <Text style={txtNote}>{out_message.substr(0, 74)} ..</Text>
                     </Body>
                     <Right>

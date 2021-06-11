@@ -28,6 +28,11 @@ export * from './component/Statusbar'
 export * from './component/Maintenance'
 export * from './component/Headerd'
 export * from './component/Reload'
+export * from './component/Snackbar'
+export * from './component/ModalContact'
+export * from './component/ListContact'
+
+
 
 export {
      Indicator, BallIndicator, BarIndicator, DotIndicator, MaterialIndicator,
