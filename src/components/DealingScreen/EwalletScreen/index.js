@@ -98,7 +98,7 @@ export default class EwalletScreen extends Component {
                 })
             }
         } catch(e) {
-            setNotify('denom ', e.Error)
+            // setNotify('denom ', e.Error)
             console.log(e.Error);
         }
     }
@@ -198,7 +198,7 @@ export default class EwalletScreen extends Component {
                                 placeholder="Nomor Handphone"
                                 onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber.replace(/[^0-9]/g, ''))}
                                 value={this.state.setNumber}
-                                maxLength={15}
+                                maxLength={19}
                                 keyboardType='phone-pad'
                             />
                         <Right>

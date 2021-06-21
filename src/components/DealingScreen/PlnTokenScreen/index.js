@@ -55,7 +55,7 @@ export default class PlnTokenScreen extends Component {
 
     _onRetrieveValNumbSubStr = async val => {
         this.setState({ setNumber: val }, () => {
-            if (_.size(this.state.setNumber) > 7) {
+            if (_.size(this.state.setNumber) > 6) {
                 this.setState({
                         isOperator: 'PLN',
                         isSetOpr: true,
@@ -76,7 +76,7 @@ export default class PlnTokenScreen extends Component {
             let urii = dev_net()+`prefix-code-trx/markup/token/${id}/${isOperator}`
             let results = await axios.get(urii)
             if (_.isEqual(results.data.status, 404)) {
-                this.setState({ isSetDenom: false }, () => setNotify(results.data.msg))
+                this.setState({ isSetDenom: false }, () => setNotify(`Sorry, ID number invalid \n min 7 character`))
             }else {
                 this.setState({
                     setNominal: results.data.data,
@@ -86,7 +86,7 @@ export default class PlnTokenScreen extends Component {
                 })
             }
         } catch(e) {
-            setNotify('denom ', e.Error)
+            setNotify(e)
             console.log(e);
         }
     }
@@ -187,7 +187,7 @@ export default class PlnTokenScreen extends Component {
                                 placeholder="Nomor Meter"
                                 onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber.replace(/[^0-9]/g, ''))}
                                 value={this.state.setNumber}
-                                maxLength={15}
+                                maxLength={19}
                                 keyboardType='phone-pad'
                             />
                         <Right>

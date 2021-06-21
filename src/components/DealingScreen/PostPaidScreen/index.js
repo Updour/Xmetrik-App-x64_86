@@ -331,7 +331,7 @@ export default class PostPaidScreen extends Component {
                                 placeholder="ID Pelanggan"
                                 onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber.replace(/[^0-9]/g, ''))}
                                 value={this.state.setNumber}
-                                maxLength={15}
+                                maxLength={19}
                                 keyboardType='phone-pad'
                             />
                         <Right>

@@ -17,3 +17,7 @@ export const formatDate = (value) => {
 export const setFormDate = (val) => {
     return moment(val).format('YYYY-MM-DD')
 }
+
+export const setExpired = () => (
+    moment(new Date()).add(10, 'days').calendar()
+)

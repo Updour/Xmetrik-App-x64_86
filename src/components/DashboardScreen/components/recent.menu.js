@@ -15,22 +15,28 @@ import { shome, dev_net, setNotify, setPrepare, styles, EmptyData } from '../../
 import { RecentInbox } from './elm.response'
 
 export default class RecentDashboard extends Component {
+   _isMounted = false;
   state = {
     inbox: [],
     isSetElemt: false
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this._onRetrieveValStorage()
   }
-
+  componentWillUnmount() {
+        this._isMounted = false;
+    }
   _onRetrieveValStorage = async () => {
     try {
       let val = await AsyncStorage.getItem('@keySign')
       let parse = JSON.parse(val)
-      return _.isNull(parse) ? setNotfound(parse) :
-      this.setState({ agenid: _.get(parse[0], 'agenid')},
-        () => setTimeout(() => this._onRetrieveValInbox(), 350))
+      if (this._isMounted) {
+        return _.isNull(parse) ? setNotfound(parse) :
+        this.setState({ agenid: _.get(parse[0], 'agenid')},
+          () => setTimeout(() => this._onRetrieveValInbox(), 350))
+      }
     } catch(e) {
       console.log(e);
     }

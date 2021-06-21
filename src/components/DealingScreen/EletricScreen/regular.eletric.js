@@ -58,7 +58,7 @@ export default class RegularEletric extends Component {
     _onRetrieveValNumbSubStr = async val => {
         this.setState({ setNumber: val }, () => {
             let setByu = this.state.setNumber.substr(0, 6)
-            console.log(this.state.setNumber)
+            // console.log(this.state.setNumber)
             if (_.isEmpty(this.state.setNumber) || _.isUndefined(this.state.setNumber)) {
                 this.setState({
                     isSetOpr: false,
@@ -222,7 +222,7 @@ export default class RegularEletric extends Component {
                                 placeholder="Nomor Handphone"
                                 onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber.replace(/[^0-9]/g, ''))}
                                 value={this.state.setNumber}
-                                maxLength={15}
+                                maxLength={16}
                                 keyboardType='phone-pad'
                             />
                         <Right>

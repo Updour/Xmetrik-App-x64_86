@@ -198,7 +198,7 @@ export default class GameScreen extends Component {
                                 placeholder="ID Game/ Handphone"
                                 onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber.replace(/[^0-9]/g, ''))}
                                 value={this.state.setNumber}
-                                maxLength={15}
+                                maxLength={19}
                                 keyboardType='phone-pad'
                             />
                         <Right>

@@ -8,7 +8,10 @@ import { List,  ListItem, Left, Button, Icon, Body, Right } from 'native-base'
 import { styles, formatPrice } from '../../helper'
 
 const PropsToday = ({item, onPress}) => {
-    let { entry_date, ket_status, status_ppob, kode, operator, success_date, tipe_sender, tujuan, vsn } = item
+    let {
+        entry_date, ket_status, status_ppob, kode, operator, success_date, tipe_sender,
+        tujuan, vsn, tagihan, atas_nama, adm, total_bayar
+    } = item
     let { listStyles, txtLeft, txtRight, headerStyles, txtCenter } = styles
     return (
             <View style={styles.listStyles} >
@@ -61,6 +64,23 @@ const PropsToday = ({item, onPress}) => {
                         <Text style={txtLeft}>Type/ Produk</Text>
                         <Text style={txtRight}>{`${_.toUpper(operator)}/ ${kode.toUpperCase()}`}</Text>
                     </ListItem>
+                    {
+                        _.isEqual(operator, 'ppob') &&
+                        <View>
+                        <ListItem noIndent>
+                            <Text style={txtLeft}>Tagihan/ Admin</Text>
+                            <Text style={txtRight}>Rp. {`${formatPrice(tagihan)}/ ${adm}`}</Text>
+                        </ListItem>
+                        <ListItem noIndent>
+                            <Text style={txtLeft}>Atas Nama</Text>
+                            <Text style={txtRight}>{atas_nama}</Text>
+                        </ListItem>
+                        <ListItem noIndent>
+                            <Text style={txtLeft}>Total Bayar</Text>
+                            <Text style={txtRight}>Rp. {formatPrice(total_bayar)}</Text>
+                        </ListItem>
+                        </View>
+                    }
                     <ListItem noIndent>
                         <Text style={txtLeft}>ID Pengirim</Text>
                         <Text style={txtRight}>{tipe_sender}</Text>

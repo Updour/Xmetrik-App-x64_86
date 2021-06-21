@@ -14,7 +14,7 @@ import Icons from 'react-native-vector-icons/Ionicons';
 import Icond from 'react-native-vector-icons/MaterialIcons'
 import Iconn from 'react-native-vector-icons/FontAwesome'
 
-import { Statusbar, styles, setNotify, shome, dev_net, formatPrice } from '../../helper'
+import { Statusbar, styles, setNotify, setNotfound, shome, dev_net, formatPrice } from '../../helper'
 import MenuDashboard from './components/menu.dashboard'
 import StatusDashboard from './components/status.menu'
 import RecentDashboard from './components/recent.menu'
@@ -26,20 +26,25 @@ export default class DashboardScreen extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this._onRetrieveValStorage()
     }
-
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     _onRetrieveValStorage = async () => {
         try {
             let val = await AsyncStorage.getItem('@keySign')
             let parse = JSON.parse(val)
             let { agenid, saldo, bonus, sender, nama,  } = parse[0]
-            return _.isNull(parse) ? setNotfound(parse) :
+            if (this._isMounted) {
+            return _.isNull(parse) ? setNotfound() :
             this.setState({
                 id: _.get(parse[0], 'agenid'),
                 hp: _.get(parse[0], 'sender').replace('0', '+62'),
                 // uname: _.get(parse[0], 'nama')
             }, () => setTimeout(() => this._onRetrieveValStockiests(), 575))
+        }
         } catch(e) {
             console.log(e);
         }

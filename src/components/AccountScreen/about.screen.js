@@ -11,7 +11,7 @@ export default class AboutScreen extends Component {
             <View style={styles.container}>
             <StatusBar backgroundColor="#4d94ff" barStyle="light-content" />
                 <Text style={styles.textName}>X-Metrik</Text>
-                    <Text style={styles.textVersion}>Application Version 02.06.0002 -beta</Text>
+                    <Text style={styles.textVersion}>Application Version 21.06.0003 -final</Text>
                         <Image source={require('../../assets/images/profiles/about.jpg')}
                         style={styles.imgStyles}/>
                     <Text style={styles.textCopyright}>{'\u00A9'} Copyright protected by team X-Metrik</Text>

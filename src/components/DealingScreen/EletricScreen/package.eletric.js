@@ -223,7 +223,7 @@ export default class PackageEletric extends Component {
                                 placeholder="Nomor Handphone"
                                 onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber.replace(/[^0-9]/g, ''))}
                                 value={this.state.setNumber}
-                                maxLength={15}
+                                maxLength={16}
                                 keyboardType='phone-pad'
                             />
                         <Right>
