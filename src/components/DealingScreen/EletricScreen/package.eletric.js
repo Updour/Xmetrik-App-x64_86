@@ -221,7 +221,7 @@ export default class PackageEletric extends Component {
                         <View style={styles.itemWrap}>
                             <Input style={styles.txtNumb}
                                 placeholder="Nomor Handphone"
-                                onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber.replace(/[^0-9]/g, ''))}
+                                onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber)}
                                 value={this.state.setNumber}
                                 maxLength={16}
                                 keyboardType='phone-pad'
@@ -278,11 +278,11 @@ export default class PackageEletric extends Component {
                         this.state.isSetSubmit ?
                         <Button
                             onPress={this._onSendingValsetMessages}
-                            title="Beli Pulsa"
+                            title="Beli Paket"
                             color="#841584"
                         /> :
                         <Button
-                            title="Beli Pulsa"
+                            title="Beli Paket"
                             disabled
                             color="#841584"
                         />

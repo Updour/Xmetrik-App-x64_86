@@ -117,6 +117,7 @@ export default class SignScreen extends Component {
                 this.setState({ isSign: true },
                     () => setTimeout(() => this.props.navigation.dispatch(resetAction)
                         , 3000))
+
                 // AsyncStorage.setItem('@keyAD', JSON.stringify(results.data.data))
                 AsyncStorage.setItem('@keyLog', JSON.stringify('dist'))
             }

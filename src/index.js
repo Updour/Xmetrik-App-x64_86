@@ -23,6 +23,7 @@ import WithdrawTransfer from './components/ActivityScreen/transferWd.screen'
 import CheckUpDownlineScreen from './components/ActivityScreen/checkup.downline.screen'
 import RegDownlineScreen from './components/ActivityScreen/reg.downline.screen'
 import SettingBonusScreen from './components/ActivityScreen/setting.bonus.screen'
+import SettingsBonus from './components/ActivityScreen/setting'
 
 // profiles
 import AboutScreen from './components/AccountScreen/about.screen/'
@@ -45,7 +46,7 @@ const StackScreen = createStackNavigator({
    prices: { screen: PriceScreen },
    plnt: { screen: PlnTokenScreen },
 
-   bonus: { screen: SettingBonusScreen },
+   bonus: { screen: SettingsBonus },
    reg: { screen: RegDownlineScreen },
    checkup: { screen: CheckUpDownlineScreen },
    withdraw: { screen: WithdrawTransfer },

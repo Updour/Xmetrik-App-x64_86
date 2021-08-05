@@ -6,7 +6,7 @@ import _ from 'lodash'
 import axios from 'axios'
 import Contacts from 'react-native-contacts';
 import AsyncStorage from '@react-native-community/async-storage';
-import { PermissionsAndroid, FlatList, Text, View, Button, TouchableOpacity } from 'react-native';
+import { PermissionsAndroid, FlatList, Text, View, Button } from 'react-native';
 import {
     Container, Content, DatePicker, Left, Input, Item, Right, Form, Icon,
     Footer
@@ -176,6 +176,7 @@ export default class RegularEletric extends Component {
                     in_message: `${setDenom}.${isSetSender}.${pin}${isSetCount}`,
                     status: 'transaksi'
                 }
+                console.log(items)
                 let reponse = await axios.post(uri, items)
                 if (_.isEqual(reponse.data.status, 201)) {
                     this.setState({ isSetSubmit: false }, () => setNotify(reponse.data.statusText))
@@ -220,7 +221,7 @@ export default class RegularEletric extends Component {
                         <View style={styles.itemWrap}>
                             <Input style={styles.txtNumb}
                                 placeholder="Nomor Handphone"
-                                onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber.replace(/[^0-9]/g, ''))}
+                                onChangeText={setNumber => this._onRetrieveValNumbSubStr(setNumber)}
                                 value={this.state.setNumber}
                                 maxLength={16}
                                 keyboardType='phone-pad'

@@ -61,6 +61,7 @@ export default class DashboardScreen extends Component {
                 this.setState({
                     bal: _.get(results.data.data[0], 'saldo'),
                     bonus: _.get(results.data.data[0], 'bonus'),
+                    komisi: _.get(results.data.data[0], 'komisi'),
                     lasBal: _.get(results.data.data[0], 'last_balance'),
                     uname: _.get(results.data.data[0], 'nama'),
                 }, () => setNotify(`preparing data ..`))
@@ -95,7 +96,7 @@ export default class DashboardScreen extends Component {
       ]
     );
   render() {
-    let { id, hp, uname, bonus, bal, lasBal} = this.state;
+    let { id, hp, uname, bonus, bal, lasBal, komisi } = this.state;
     return (
         <Container>
             <Header style={shome.header}>
@@ -157,7 +158,7 @@ export default class DashboardScreen extends Component {
                                 <Text style={shome.txtItem}>Commission</Text>
                                     <View style={shome.itemWrap}>
                                         <Text style={shome.txtItemd}>Rp. </Text>
-                                        <Text style={shome.txtItems}>0</Text>
+                                        <Text style={shome.txtItems}>{formatPrice(komisi)}</Text>
                                     </View>
                             </Card>
                             <Card style={shome.itemDetil}>

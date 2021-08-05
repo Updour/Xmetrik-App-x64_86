@@ -18,7 +18,7 @@ export default class ReportScreen extends Component {
          <Headerd onPress={() => this.props.navigation.navigate('Inbox')}>
        <Text>Reports Transaction</Text>
        </Headerd>
-        <Tabs renderTabBar={()=> <ScrollableTab />}>
+        <Tabs renderTabBar={()=> <ScrollableTab style={styles.headerStyles} />}>
             <Tab heading={
               <TabHeading style={styles.headerStyles}>
                 <Text style={styles.txtStyl}>transaksi Hari ini</Text>

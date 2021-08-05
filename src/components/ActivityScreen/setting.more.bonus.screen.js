@@ -4,22 +4,25 @@ import React, { Component } from 'react';
 
 import axios from 'axios'
 import _ from 'lodash'
-import { View, Text, Button, Picker, FlatList } from 'react-native'
+import { View, Text, Button, Picker, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-community/async-storage'
 import {
-    Container, Content, Form, Item, Label, Icon, Input, Left, Right
+    Container, Content, Form, Item, Label, Icon, Input, Left, Right, ListItem, List
 } from 'native-base'
 import {
     styles, Headerd, setNotfound, setNotEmpty, dev_net, RefreshScreen,
     EmptyData, DotIndicator, setNotify
 } from '../../helper'
-import { PropsShowBonus, PropsSetBonus } from './response'
+import { PropsShowBonus, PropsSetBonus, PropsSetMoreBonus } from './response'
 
-export default class SettingBonusScreen extends Component {
+export default class MoreBonusScreen extends Component {
     state = {
         values: [],
         setChild: [],
+        setOperator: [],
         isSetChild: '',
+        isSetOprx: '',
+        isSetBonus: '',
         isSetElm: false,
         isChange: false,
         isSetRemove: false,
@@ -48,7 +51,7 @@ export default class SettingBonusScreen extends Component {
 
     _onRetrieveValueData = async () => {
         try {
-          let results = await axios.get(dev_net()+`data-downline/setting/bonus/${this.state.id}`)
+          let results = await axios.get(dev_net()+`/data-user/downline/${this.state.id}`)
           if (_.isEqual(results.data.status, 404)) {
             this.setState({
                 isSetReload: false,
@@ -56,30 +59,28 @@ export default class SettingBonusScreen extends Component {
           }else {
             this.setState({
                 values: results.data.data,
-                isSetElm: true,
-                isSetReload: false,
+                isSetReload: false
             })
           }
         } catch(e) {
         console.log(e);
         }
     }
-
-    _onRetrieveValFilteringBonus = async () => {
+    // select operator by uid
+    _onRetrieveValUidOperator = async (val) => {
         try {
-          let urii = dev_net()+`data-downline-filter/setting/bonus/${this.state.id}/${this.state.isSetChild}`
-          let results = await axios.get(urii)
-          console.log(results.data.data)
+          let results = await axios.get(dev_net()+`/setting-bonus-recent/downline/${val}`)
           if (_.isEqual(results.data.status, 404)) {
             this.setState({
                 isSetReload: false,
-            }, () => setNotify(results.data.msg))
+            })
           }else {
             this.setState({
-                valuesing: results.data.data,
+                setOperator: results.data,
+                isAgenid: val,
                 isSetElm: true,
                 isSetRemove: true,
-                isChange: true
+                isSetReload: false,
             })
           }
         } catch(e) {
@@ -87,30 +88,32 @@ export default class SettingBonusScreen extends Component {
         }
     }
 
-     _onInsertSettingBonus = async (val) => {
+
+     _onInsertRecentBonus = async () => {
         try {
-            let { id, sender, pin, elmBonus} = this.state;
-            if (_.isEmpty(elmBonus)) return setNotEmpty(elmBonus)
+            let { id, sender, pin, isAgenid, isSetOprx, isSetBonus} = this.state;
+            if (_.isEmpty(isSetOprx) || _.isEmpty(isSetBonus)) return setNotEmpty()
              let items = {
                 agenid: id,
                 sender: sender,
-                in_message: `mk.${val.agenid}.${val.operator}.${elmBonus}.${pin}`,
+                in_message: `mk.${isAgenid}.${isSetOprx}.${isSetBonus}.${pin}`,
                 status: 'non_transaksi'
               }
             let response = await axios.post(dev_net()+`inbox-user/transaction`, items)
             if (_.isEqual(response.data.status, 201)) {
                 setNotify(response.data.statusText)
-                this.setState({
-                    isChange: false,
-                }, () => this._onRetrieveValueData())
+                setTimeout(() => this.props.navigation.navigate('Inbox'), 1000);
             }
         } catch(e) {
             console.log(e);
         }
     }
+
     _onRemoveEveryState = () => {
         this.setState({
           isSetChild: '',
+          setOperator: '',
+          isSetOprx: '',
           isSetElm: false,
           isSetRemove: false,
           isSetReload: true,
@@ -121,7 +124,7 @@ export default class SettingBonusScreen extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={styles.contentStyle}>
         <RefreshScreen
           refreshing={this.state.isSetReload}
           onRefresh={this._onRemoveEveryState}
@@ -142,12 +145,13 @@ export default class SettingBonusScreen extends Component {
                   <Picker
                     style={{width: 150, height: 50, color:'red' }}
                     selectedValue={this.state.isSetChild}
-                    onValueChange={val => this.setState({isSetChild: val },
-                      () => this._onRetrieveValFilteringBonus())}
+                    onValueChange={val => this.setState({
+                      isSetChild: val },
+                      () => this._onRetrieveValUidOperator(val))}
                   >
                   <Picker.Item  label={'Pilih Agenid'} value={this.state.isSetChild} />
                   {
-                    _.map(_.uniqBy(this.state.values, 'agenid'), (i, j) => (
+                    _.map(this.state.values, (i, j) => (
                       <Picker.Item key={j} color='#595959' label={_.upperCase(i.agenid)} value={i.agenid} />
                       ))
                   }
@@ -159,35 +163,54 @@ export default class SettingBonusScreen extends Component {
                   onPress={this._onRemoveEveryState}
                   /> :
                   <Icon name='search' style={{ padding: 7, marginTop: 4, color: '#66a3ff'}}
-                  onPress={this._onRetrieveValFilteringBonus}
+                  onPress={this._onRetrieveValUidOperator}
                   />
                 }
               </View>
             </Form>
-          {
+         {
             this.state.isSetElm ?
-              <FlatList
-                  data={ this.state.isChange ? this.state.valuesing : this.state.values }
-                  keyExtractor={(i, j) => j.toString()}
-                  renderItem={({item}) => this.state.isChange ?
-                <PropsSetBonus item={item}
-                  onChangeText={elmBonus => this.setState({elmBonus})}
-                  onPress={() => this._onInsertSettingBonus(item)}
-                /> :
-                <PropsShowBonus item={item}
-                  onPress={() => this.setState({
-                    isChange: true,
-                    isSetRemove: true,
-                    isSetChild: item.agenid,
-                    valuesing: [item]
-                  })}
-                />
-                }
-                ListEmptyComponent={() => <DotIndicator color='blue' />}
-            /> : <EmptyData color='blue' />
+              <List style={styles.listStyles}>
+              <ListItem noIndent>
+               <Text style={styles.txtLeft}>Operator</Text>
+                <Picker
+                    style={{width: 150, height: 50, color:'red' }}
+                    selectedValue={this.state.isSetOprx}
+                    onValueChange={val => this.setState({isSetOprx: val })}
+                  >
+                  <Picker.Item  label={'Pilih Operator'} value={this.state.isSetOprx} />
+                  {
+                    _.map(this.state.setOperator, (i, j) => (
+                      <Picker.Item key={j} color='#595959' label={_.upperCase(i.opx)} value={i.opx} />
+                      ))
+                  }
+                  </Picker>
+           </ListItem>
+           <ListItem noIndent>
+               <Text style={styles.txtLeft}>Harga Markup</Text>
+               <Input
+                   style={styles.txtNumb}
+                   placeholder="Input Harga Markup"
+                   placeholderTextColor='#bfbfbf'
+                   onChangeText={isSetBonus => this.setState({ isSetBonus })}
+                   value={this.state.isSetBonus.toString()}
+                   maxLength={3}
+                   keyboardType='phone-pad'
+                   autoFocus={true}
+               />
+           </ListItem>
+           </List>
+           : null
           }
           </Content>
         </RefreshScreen>
+
+        {
+            _.isEmpty(this.state.isSetOprx) ? null:
+           <TouchableOpacity onPress={this._onInsertRecentBonus} style={styles.btnSubmit}>
+                <Text style={styles.textSubmit}>Save Bonus</Text>
+           </TouchableOpacity>
+         }
       </Container>
     );
   }
